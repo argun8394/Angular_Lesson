@@ -1,0 +1,7 @@
+<p [ngStyle]="{backgroundColor : getColor()}"
+[ngClass]="{online: serverStatus === 'online'}"
+>{{"Server" }} with ID {{serverId}} is {{ getServerStatus() }}</p> <!--String İnterpolation
+[ngStyle]="{backgroundColor : getColor()}" ngStyle ile CSS e dinamiklik sağlamış oluruz
+[ngClass]="{online: serverStatus === 'online'}" class a verdiğimiz stilleme uygulanır
+-->
+
