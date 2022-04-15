@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th>id</th>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>age</th>
+      <th>email</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>
+</div>
+</div>
