@@ -1,2 +1,6 @@
-<p>User with ID _ID_ loaded.</p>
-<p>User name is _NAME_</p>
+<p>User with ID {{user.id}}. loaded.</p>
+<p>User name is {{user.name}}</p>
+
+<a [routerLink]="['/users','Anna',10]">Reload Anna (10)</a><!--*So Angular cleverly doesn't really instantiate this component,that would only cost us performance,
+Yani Angular akıllıca bu bileşeni gerçekten başlatmaz,bu sadece bize performansa mal olur,
+-->
