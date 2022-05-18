@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 
 import { interval, Observable, Subscription } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ private firstObsSubscription: Subscription;
       let count = 0;
       setInterval(() =>{
         observer.next(count);
-        if(count == 5 ){//complete ten önce error a girer
+        if(count === 5 ){//complete ten önce error a girer
           observer.complete();
         }
         if(count > 3 ){
@@ -29,7 +30,11 @@ private firstObsSubscription: Subscription;
         count++;
       },1000);
     })
-    this.firstObsSubscription=  customIntervalObservable.subscribe(data => {
+    this.firstObsSubscription=  customIntervalObservable.pipe(filter(data => {
+      return data>0;
+    }),map((data:number)=>{
+      return 'Round ' + ( data + 1);
+    })).subscribe(data => {
       console.log(data)
     },error=>{console.log(error)
       alert(error.message);
