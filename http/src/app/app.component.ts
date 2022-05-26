@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, private postsService: PostsService) {}
 
   ngOnInit() {
+    //initial anında yükleme sağlar aşağıdakiler için
     this.isFetching=true;
     this.postsService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
@@ -44,6 +45,9 @@ export class AppComponent implements OnInit {
 
   onClearPosts() {
     // Send Http request
+    this.postsService.deletePosts().subscribe(() => {
+      this.loadedPosts=[];
+    })
   }
 /*
   private fetchPosts() {
