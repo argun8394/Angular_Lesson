@@ -10,6 +10,7 @@ import {Post} from './post.model';
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
+  isFetching=false;
 
   constructor(private http: HttpClient) {}
 
@@ -35,13 +36,14 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
+
     /*this.http.get('https://ng-complete-guide-6c377-default-rtdb.firebaseio.com/posts.json').subscribe
     (posts=>{
       console.log(posts
         )
     })//Response Data yı dönüştürmek için aşağıdaki şekilde RxJs operatörlerini kullanma
     */
-
+    this.isFetching= true;
     this.http.get< {[key: string]: Post}>('https://ng-complete-guide-6c377-default-rtdb.firebaseio.com/posts.json').pipe(
       map(responseData => {
         const postArray: Post[] = [];
@@ -54,6 +56,7 @@ export class AppComponent implements OnInit {
       }))
     .subscribe
     (posts=>{
+      this.isFetching= false;
       this.loadedPosts = posts;
     })
 
