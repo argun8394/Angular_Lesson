@@ -31,7 +31,7 @@ export class PostsService{
     {
       headers:new HttpHeaders({'Custom-Header': 'Hello'}),
       params:searchParams,
-      responseType: 'json'
+      responseType: 'json'//Changing the Response Body Type
     }
     )
     .pipe(
@@ -57,7 +57,7 @@ export class PostsService{
     //Observing Different Types of Responses
     {
       observe:'events',//events dışında response ta alır //[*1]
-      responseType: 'json',//json defaulttur (text te olabilir)
+      responseType: 'json',//json defaulttur (text te olabilir) **Changing the Response Body Type
     } ).pipe(tap(event => {
       console.log(event);
       if(event.type === HttpEventType.Sent){//[*1]
