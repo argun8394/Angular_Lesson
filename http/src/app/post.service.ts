@@ -30,7 +30,8 @@ export class PostsService{
     return this.http.get< {[key: string]: Post}>('https://ng-complete-guide-6c377-default-rtdb.firebaseio.com/posts.json',
     {
       headers:new HttpHeaders({'Custom-Header': 'Hello'}),
-      params:searchParams
+      params:searchParams,
+      responseType: 'json'
     }
     )
     .pipe(
@@ -55,7 +56,8 @@ export class PostsService{
     //[*1] her zaman kullanılan bir yapı değil ama yardımcı olan bir yapı aşağıda tap ile kullandık
     //Observing Different Types of Responses
     {
-      observe:'events'//events dışında response ta alır //[*1]
+      observe:'events',//events dışında response ta alır //[*1]
+      responseType: 'json',//json defaulttur (text te olabilir)
     } ).pipe(tap(event => {
       console.log(event);
       if(event.type === HttpEventType.Sent){//[*1]
