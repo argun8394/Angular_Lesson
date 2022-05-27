@@ -28,6 +28,10 @@ export class AppComponent implements OnInit, OnDestroy{
     this.postsService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    },
+    error => {
+      this.isFetching = false;// hata alındığında yeniden veri getirme işlemi yapılamaz
+      this.error = error.message;
     });
   }
 
@@ -49,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.loadedPosts = posts;
     },
     error => {
+      this.isFetching = false;// hata alındığında yeniden veri getirme işlemi yapılamaz
       this.error=error.message;
       console.log(error)
     });
@@ -88,6 +93,11 @@ export class AppComponent implements OnInit, OnDestroy{
     })
 
   }*/
+
+  onHandleError(){
+    //hata oluştuğunda bu metod butonuna tıkladığımızda error u null yapıp ekrandan kaldırır
+    this.error = null;
+  }
 
   ngOnDestroy(){
     this.errorSub.unsubscribe();
